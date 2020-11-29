@@ -1,5 +1,5 @@
 # Covid-Data-Visualization
-This repository was created to so a visualization of how the on-going pandemic is effecting Canada and the rest of the world..
+This repository was created to so a visualization of how the on-going pandemic is effecting Canada and the rest of the world. Special thanks to Dyllon for providing the idea for this project.
 
 # How It Was Made
 This project was made using Python-Flask, Dash and Plotly. All of the COVID-19 data for Canada is pulled from an API which can be found [here](https://covid-api.com/). All COVID-19 data for the rest of the world is pulled from [this](https://documenter.getpostman.com/view/11144369/Szf6Z9B3?version=latest) API. Specifically, the API for Canada uses the `/reports` endpoint with the ISO of `CAN`. For the world API, it pulls data from the `/v2/countries` endpoint. The program periodically pulls from these APIs every 5 minutes. To attempt with helping the applications speed, the application uses Flask-Caching to cache the APIs results as well as the GeoJSON data being read from `canada.geojson`. As mentioned, each of the APIs data is cached for 5 minutes, where the GeoJSON data is cached for 30 minutes.
