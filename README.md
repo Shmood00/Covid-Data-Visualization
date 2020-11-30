@@ -66,4 +66,4 @@ Once clicking on one of the filters, the world map will be updated with the appr
 
 ![](pics/world_filters.gif)
 
-The reason the world map has more filters than the Canadian map is because of the API being used. The API being used for the world map provides way more detailed information than the API being used for Canada.
+The reason the world map has more filters than the Canadian map is because of the API being used. The API being used for the world map provides more detailed information than the API being used for Canada.
