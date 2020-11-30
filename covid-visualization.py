@@ -226,5 +226,5 @@ def display_page(pathname):
         return world_layout
 
 
-if __name__ == "__main__":
+def run():
     app.run_server(threaded=True)
