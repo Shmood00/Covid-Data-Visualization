@@ -18,6 +18,8 @@ app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 app.title = "COVID-19 Visualization"
 app.config.suppress_callback_exceptions = True
 
+server = app.server
+
 #Configure Flask-Caching
 #Holds maximum of 20 files
 cache = Cache(app.server, config={
