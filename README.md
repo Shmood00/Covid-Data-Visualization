@@ -21,13 +21,13 @@ Once the virtual environment is setup, move to the virtual environments director
 Once in the repositories folder, intsall the required packaged needed using pip.
 * `pip3 install -r requirements.txt`
 
-Once the packages are installed, run `python3 covid-visualization.py` and direct yourself to `http://localhost:9567/` to view the interactive graphs.
+Once the packages are installed, run `python3 covid-visualization.py` and direct yourself to `http://localhost:8050/` to view the interactive graphs.
 
 Note: Once done using the application, you can disable the virtual environment you created by running `deactivate`.
 
 # How It Looks
 
-Here's how the map will look when initially visiting `http://localhost:9567/`:
+Here's how the map will look when initially visiting `http://localhost:8050/`:
 
 ![](pics/canada.gif)
 
