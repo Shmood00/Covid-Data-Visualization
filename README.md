@@ -33,9 +33,13 @@ Here's how the map will look when initially visiting `http://localhost:8050/`:
 
 You can also filter the graph of Canada by:
 * Confirmed cases
+* Confirmed cases since yesterday
 * Active cases
+* Active cases since yesterday
 * Total deaths
+* Deaths since yesterday
 * Recovered
+* Recovered since yesterday
 
 ![](pics/canada_filters_new.gif)
 
