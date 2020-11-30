@@ -227,4 +227,4 @@ def display_page(pathname):
 
 
 if __name__ == "__main__":
-    app.run_server(threaded=True, port=9567)
+    app.run_server(threaded=True)
