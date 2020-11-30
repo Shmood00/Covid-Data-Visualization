@@ -29,7 +29,7 @@ Note: Once done using the application, you can disable the virtual environment y
 
 Here's how the map will look when initially visiting `http://localhost:8050/`:
 
-![](pics/canada.gif)
+![](pics/canada_new.gif)
 
 You can also filter the graph of Canada by:
 * Confirmed cases
@@ -37,7 +37,7 @@ You can also filter the graph of Canada by:
 * Total deaths
 * Recovered
 
-![](pics/canada_filters.gif)
+![](pics/canada_filters_new.gif)
 
 After selecting a filter a new map will be rendered with the appropriate data, this should only take a few seconds to render.
 
