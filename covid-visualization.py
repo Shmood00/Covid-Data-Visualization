@@ -7,6 +7,7 @@ from dash.dependencies import Input
 import requests, json
 import pandas as pd
 import plotly.express as px
+import plotly.graph_objects as go
 import urllib.request
 from flask_caching import Cache
 
@@ -176,20 +177,40 @@ def update_chart(selected):
     #Grab Canada GeoJSON data
     canada = canada_geojson()
 
-    #Convert selected value to a string (used to get discrete colours for the map)
-    dff[selected] = dff[selected].astype(str)
-
-    #Create the map
-    fig = px.choropleth(dff, geojson=canada,locations=dff['region.province'],
-                    hover_name='region.province', hover_data={'date':True,'last_update':True,selected: True, 'region.province':False}, 
-                    color=dff[selected], featureidkey='properties.name', projection='natural earth'
-    )
+    #Data to be displayed when each province is hovered over
+    dff['hover_text'] = "<b>"+dff['region.province']+"</b>"+"<br>"+selected+": "+dff[selected].apply(str)+"<br>"+"Last Updated: "+dff['last_update']+"<br>"+"Date: "+dff['date']
     
-    #Only show region of map that relates to what's set in locations (in this case the provinces of Canada)
-    fig.update_geos(fitbounds='locations', visible=False)
-    fig.update_layout(margin={"r":0,"t":20,"l":0,"b":0})
+    #Create the map
+    fig = go.Figure(data=go.Choropleth(
+        locations=dff['region.province'],
+        locationmode='geojson-id',
+        text=dff['hover_text'],
+        hoverinfo='text',
+        geojson=canada, 
+        featureidkey='properties.name',
+        z=dff[selected].astype(float),
+        colorscale='sunsetdark',
+        colorbar_title = selected,
+        autocolorscale=False
+    ))
 
-    return fig 
+
+    #Only show region of map that relates to what's set in locations (in this case the provinces of Canada)
+    fig.update_layout(
+        geo={
+            'showframe':False,
+            'fitbounds':'locations',
+            'visible':False
+        },
+        margin={
+            "r":0,
+            "t":20,
+            "l":0,
+            "b":0
+        }
+    )
+
+    return fig
 
 
 #Callback that updates the world map when different filters are chosen
@@ -200,6 +221,7 @@ def update_chart(selected):
 def update_world_map(selected):
     dff = world_data()
 
+    #Uncomment line below to use discrete colours instead.
     #dff[selected] = dff[selected].astype(str)
 
     fig = px.choropleth(dff, locations=dff['countryInfo.iso3'],
