@@ -178,7 +178,7 @@ def update_chart(selected):
     canada = canada_geojson()
 
     #Data to be displayed when each province is hovered over
-    dff['hover_text'] = "<b>"+dff['region.province']+"</b>"+"<br>"+selected+": "+dff[selected].apply(str)+"<br>"+"Last Updated: "+dff['last_update']+"<br>"+"Date: "+dff['date']
+    dff['hover_text'] = "<b>"+dff['region.province']+"</b>"+"<br>"+selected[0].upper()+selected[1:]+": "+dff[selected].apply(str)+"<br>"+"As of Date: "+dff['date']+"<br>"+"Last Updated: "+dff['last_update']
     
     #Create the map
     fig = go.Figure(data=go.Choropleth(
@@ -189,11 +189,10 @@ def update_chart(selected):
         geojson=canada, 
         featureidkey='properties.name',
         z=dff[selected].astype(float),
-        colorscale='sunsetdark',
-        colorbar_title = selected,
+        colorscale='spectral',
+        colorbar_title = "<b>"+selected[0].upper()+selected[1:]+"</b>",
         autocolorscale=False
     ))
-
 
     #Only show region of map that relates to what's set in locations (in this case the provinces of Canada)
     fig.update_layout(
