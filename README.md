@@ -41,7 +41,7 @@ You can also filter the graph of Canada by:
 * Recovered
 * Recovered since yesterday
 
-![](pics/canada_filters_new.gif)
+![](pics/canada_new_filters.gif)
 
 After selecting a filter a new map will be rendered with the appropriate data, this should only take a few seconds to render.
 
