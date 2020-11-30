@@ -1,1 +1,1 @@
-web: gunicorn covid-visualization:run()
+web: gunicorn app:app
