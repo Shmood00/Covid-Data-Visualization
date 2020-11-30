@@ -6,7 +6,6 @@ from dash.dependencies import Output
 from dash.dependencies import Input
 import requests, json
 import pandas as pd
-import plotly.express as px
 import plotly.graph_objects as go
 import urllib.request
 from flask_caching import Cache
@@ -183,7 +182,6 @@ def update_chart(selected):
     #Create the map
     fig = go.Figure(data=go.Choropleth(
         locations=dff['region.province'],
-        locationmode='geojson-id',
         text=dff['hover_text'],
         hoverinfo='text',
         geojson=canada, 
@@ -220,18 +218,36 @@ def update_chart(selected):
 def update_world_map(selected):
     dff = world_data()
 
-    #Uncomment line below to use discrete colours instead.
-    #dff[selected] = dff[selected].astype(str)
+    #What's displayed when each country is hovered over
+    dff['hover_text'] = "<b>"+dff['country']+"</b>"+"<br><br>"+"Continent: "+dff['continent']+"<br>"+"Population: "+dff['population'].astype(str)+"<br>"+selected[0].upper()+selected[1:]+": "+dff[selected].astype(str)
 
-    fig = px.choropleth(dff, locations=dff['countryInfo.iso3'],
-                    hover_name='country', hover_data={'countryInfo.iso3':False, 'population':True,
-                                                        'continent':True},
-                    color_continuous_scale='sunset',
-                    color=dff[selected], projection="orthographic")
-    
-    fig.update_layout(height=800)
+    #Create world map
+    fig = go.Figure(data=go.Choropleth(
+        locations=dff['countryInfo.iso3'],
+        text=dff['hover_text'],
+        hoverinfo='text',
+        z=dff[selected].astype(float),
+        colorscale='sunset',
+        colorbar_title="<b>"+selected[0].upper()+selected[1:]+"</b>"
+    ))
 
-    fig.update_geos(showocean=True, oceancolor='#66a3ff')
+    fig.update_layout(
+        geo={
+            'showframe':False,
+            'showocean':True,
+            'showlakes':True,
+            'lakecolor':'#66a3ff',
+            'oceancolor':'#66a3ff',
+            'projection_type':'orthographic'
+        },
+        margin={
+            "r":0,
+            "t":20,
+            "l":0,
+            "b":0
+        },
+        height=600
+    )
     
     return fig
 
