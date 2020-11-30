@@ -105,9 +105,14 @@ main_page = html.Div(
                                 value="confirmed",
                                 options=[
                                     {"label":"Confirmed cases", "value":"confirmed"},
+                                    {"label":"Confirmed cases since yesterday", "value":"confirmed_diff"},
                                     {"label":"Active cases", "value":"active"},
+                                    {"label":"Active cases since yesterday", "value":"active_diff"},
                                     {"label":"Total deaths", "value":"deaths"},
-                                    {"label":"Recovered", "value":"recovered"}
+                                    {"label":"Deaths since yesterday", "value":"deaths_diff"},
+                                    {"label":"Recovered", "value":"recovered"},
+                                    {"label":"Recovered since yesterday", "value":"recovered_diff"}
+                                    
                                 ]
                             )
                         ]),
